@@ -603,3 +603,4 @@ token.pickle
 credentials.json
 service_account.json
 studio_db.json
+hci_studio_db.json
