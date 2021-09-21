@@ -19,7 +19,7 @@ def generate_ipm(student_list, gdrive_service, template_url, folder_url):
     :param folder_url: string url of folder to copy file to.
     :return: None
     """
-    # iterate over student list and create an IDP for each student
+    # iterate over student list and create an IPM for each student
     for student in student_list:
         # generate a filename using the student's first name and last initial
         student_name_split = student.split(" ")
