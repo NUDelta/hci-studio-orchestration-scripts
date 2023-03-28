@@ -36,10 +36,7 @@ python create_ipm.py "https://docs.google.com/spreadsheets/d/1XTuvjEtIgFuvNZ5Mzr
 ```
 
 ### create_self_assessments.py
-This script is used to create end-of-quarter self-assessments for each student, given a self-assessment template, output directory, true/false for if Basic Info should be filled from the studio roster, a link to the studio roster, the name of the sheet with student info, and the name of the sheet with team info.   
-
-Mid-Quarter Check-In spreadsheets for each student in DTR, given a Mid-Quarter Check-In, output directory, and
-studio database with student and project information.
+This script is used to create end-of-quarter self-assessments for each student, given a self-assessment template, output directory, true/false for if Basic Info should be filled from the studio roster, a link to the studio roster, the name of the sheet with student info, and the name of the sheet with team info.
 
 The script is run as follows: 
 ```commandline
