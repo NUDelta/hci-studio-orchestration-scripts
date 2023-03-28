@@ -45,7 +45,7 @@ python create_weekly_templates.py <template_name> <weekly_template_template_url>
 
 For example:
 ```commandline
-python create_weekly_templates.py "Template 01: Needfinding and Analysis On Your Own" "https://docs.google.com/presentation/d/1eSLR344A5C2dt4ICQPzv5VjlUwgNBHCdCHRtYDzP5bs/edit?usp=share_link" "https://drive.google.com/drive/u/1/folders/1jRnumZWdL_2fq0g0dUPOO-leYFJfGRz3" "[\"Milky Way\", \"Andromeda\",  \"Cigar\",  \"Triangulum\",  \"Sombrero\",  \"Whirlpool\",  \"Pinwheel\",  \"Sculptor\",  \"Cartwheel\",  \"Tadpole\"]"
+python create_weekly_templates.py "Template 01: Needfinding and Analysis On Your Own" "https://docs.google.com/presentation/d/1QJjs1rIpw5fmTsSRsqSVzkzdt5eKNsVtMd8d2_wPz1A/edit?usp=share_link" "https://drive.google.com/drive/u/1/folders/1H6gNobNgjCcW1nFlnq0SICyjuHjto5yW" "[\"Milky Way\", \"Andromeda\",  \"Cigar\",  \"Triangulum\",  \"Sombrero\",  \"Whirlpool\",  \"Pinwheel\",  \"Sculptor\",  \"Cartwheel\",  \"Tadpole\"]"
 ```
 
 ### create_self_assessments.py

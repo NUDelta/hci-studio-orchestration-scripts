@@ -36,7 +36,7 @@ def generate_weekly_templates(
         # generate a file URL for copied file, and print out
         curr_file_id = curr_copied_file["id"]
         print(
-            "{filename}: https://docs.google.com/spreadsheets/d/{id}/edit".format(
+            "{filename}: https://docs.google.com/presentation/d/{id}/edit".format(
                 filename=weekly_template_filename, id=curr_file_id
             )
         )
