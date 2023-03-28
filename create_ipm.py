@@ -23,8 +23,8 @@ def generate_ipm(student_list, gdrive_service, template_url, folder_url):
     for student in student_list:
         # generate a filename using the student's first name and last initial
         student_name_split = student.split(" ")
-        student_filename = "{first} {lasti}. -- Individual Progress Map".format(first=student_name_split[0],
-                                                                               lasti=student_name_split[-1][0])
+        student_filename = "[{first} {lasti}.] Individual Progress Map (IPM)".format(first=student_name_split[0],
+                                                                                    lasti=student_name_split[-1][0])
 
         # copy original file for each project using student_filename
         curr_copied_file = copy_file(gdrive_service, template_url, folder_url, student_filename)
