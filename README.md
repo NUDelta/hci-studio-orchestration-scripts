@@ -35,6 +35,19 @@ For example:
 python create_ipm.py "https://docs.google.com/spreadsheets/d/1XTuvjEtIgFuvNZ5MzrYH6WlphnYaprOC-7BUJiT0mWU/edit?usp=sharing" "https://drive.google.com/drive/u/1/folders/1gWcW29cheuDxEhImg-gwnwhGRmItWfez" "[\"John Doe\", \"Jane Doe\"]"
 ```
 
+### create_weekly_templates.py
+This script is used to create Weekly Project Templates for a list of Project Teams.
+
+The script is run as follows:
+```commandline
+python create_weekly_templates.py <template_name> <weekly_template_template_url> <weekly_template_folder_url> "[\"list\", \"of\", \"project team names\"]"
+```
+
+For example:
+```commandline
+python create_weekly_templates.py "Template 01: Needfinding and Analysis On Your Own" "https://docs.google.com/presentation/d/1eSLR344A5C2dt4ICQPzv5VjlUwgNBHCdCHRtYDzP5bs/edit?usp=share_link" "https://drive.google.com/drive/u/1/folders/1jRnumZWdL_2fq0g0dUPOO-leYFJfGRz3" "[\"Milky Way\", \"Andromeda\",  \"Cigar\",  \"Triangulum\",  \"Sombrero\",  \"Whirlpool\",  \"Pinwheel\",  \"Sculptor\",  \"Cartwheel\",  \"Tadpole\"]"
+```
+
 ### create_self_assessments.py
 This script is used to create end-of-quarter self-assessments for each student, given a self-assessment template, output directory, true/false for if Basic Info should be filled from the studio roster, a link to the studio roster, the name of the sheet with student info, and the name of the sheet with team info.
 
@@ -47,3 +60,5 @@ For example:
 ```commandline
 python create_self_assessments.py "https://docs.google.com/spreadsheets/d/1sP-kMXQlKvqPOOTgA3M1Qp3FXvJ9DSRO2ZjaWVem0bg/edit?usp=sharing" "https://drive.google.com/drive/u/1/folders/1Zrqjo1yI-twQpzZRxC_MLWKu_XoUFbMJ" "true" "https://docs.google.com/spreadsheets/d/1xr9MWxBWHXcRyjeBXvF4tP6c9JNct1ckRgQqJHXxfl4/edit#gid=0" "Student Info" "Team Info"
 ```
+
+"[\"Milky Way\", \"Andromeda\",  \"Cigar\",  \"Triangulum\",  \"Sombrero\",  \"Whirlpool\",  \"Pinwheel\",  \"Sculptor\",  \"Cartwheel\",  \"Tadpole\"]"
