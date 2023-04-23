@@ -28,7 +28,7 @@ def fetch_student_info(spreadsheet, sheet_name):
         "Team Name": "team_name",
         "Mysore Availability": "mysore_availability",
         "Individual Progress Map": "individual_progress_map_link",
-        "Self-Assessment": "self_assessment_link"
+        "Self-Assessment": "self_assessment_link",
     }
 
     # create a header index to lookup header_mapping keys by index number
@@ -43,8 +43,12 @@ def fetch_student_info(spreadsheet, sheet_name):
             exclude_list.append(curr_val)
 
     if len(exclude_list) > 0:
-        print("The following columns were included in the Studio Roster Spreadsheet, but not in the header_mapping. "
-              "They will not be included in the parsed Studio Database: {}".format(exclude_list))
+        print(
+            "The following columns were included in the Studio Roster Spreadsheet, but not in the header_mapping. "
+            "They will not be included in the parsed Studio Database: {}".format(
+                exclude_list
+            )
+        )
 
     # iterate over each row and parse data
     output = {}
@@ -58,7 +62,7 @@ def fetch_student_info(spreadsheet, sheet_name):
             "team_name": "",
             "mysore_availability": [],
             "individual_progress_map_link": "",
-            "self_assessment_link": ""
+            "self_assessment_link": "",
         }
 
         # parse each individual info field
@@ -72,8 +76,12 @@ def fetch_student_info(spreadsheet, sheet_name):
                 curr_student_name = student_info
             # if Mysore Availability, parse comma-separated string into a list
             elif header_index[index] == "Mysore Availability":
-                mysore_availability_list = [mysore_time.strip() for mysore_time in student_info.split(",")]
-                curr_student[header_mapping[header_index[index]]].extend(mysore_availability_list)
+                mysore_availability_list = [
+                    mysore_time.strip() for mysore_time in student_info.split(",")
+                ]
+                curr_student[header_mapping[header_index[index]]].extend(
+                    mysore_availability_list
+                )
             # else, add to appropriate field
             else:
                 curr_student[header_mapping[header_index[index]]] = student_info.strip()
@@ -109,7 +117,7 @@ def fetch_team_info(spreadsheet, sheet_name):
         "Week 6 Template": "week_6_template_link",
         "Week 7 Template": "week_7_template_link",
         "Week 8 Template": "week_8_template_link",
-        "Week 9 Template": "week_9_template_link"
+        "Week 9 Template": "week_9_template_link",
     }
 
     # create a header index to lookup header_mapping keys by index number
@@ -124,8 +132,12 @@ def fetch_team_info(spreadsheet, sheet_name):
             exclude_list.append(curr_val)
 
     if len(exclude_list) > 0:
-        print("The following columns were included in the Studio Roster Spreadsheet, but not in the header_mapping. "
-              "They will not be included in the parsed Studio Database: {}".format(exclude_list))
+        print(
+            "The following columns were included in the Studio Roster Spreadsheet, but not in the header_mapping. "
+            "They will not be included in the parsed Studio Database: {}".format(
+                exclude_list
+            )
+        )
 
     # iterate over each row and parse data
     output = {}
@@ -134,9 +146,7 @@ def fetch_team_info(spreadsheet, sheet_name):
         curr_team_name = ""
 
         # setup an object for holding current team information
-        curr_team = {
-            "weekly_templates": []
-        }
+        curr_team = {"weekly_templates": []}
 
         # parse each individual info field
         for index, sig_info in enumerate(team):
@@ -145,12 +155,11 @@ def fetch_team_info(spreadsheet, sheet_name):
                 continue
 
             # check if a weekly template column
-            pattern = re.compile(r'Week \d+ Template')
+            pattern = re.compile(r"Week \d+ Template")
             if pattern.match(header_index[index]):
-                curr_team["weekly_templates"].append({
-                    "name": header_index[index],
-                    "link": sig_info.strip()
-                })
+                curr_team["weekly_templates"].append(
+                    {"name": header_index[index], "link": sig_info.strip()}
+                )
             # check if team name column
             elif header_index[index] == "Team Name":
                 curr_team_name = sig_info.strip()
@@ -178,11 +187,11 @@ def create_studio_db_dict(student_info_dict, team_info_dict):
 
     # construct list of team members
     team_members = {team_names: [] for team_names in team_info_dict.keys()}
-    for student_name, student_info  in student_info_dict.items():
+    for student_name, student_info in student_info_dict.items():
         team_members[student_info["team_name"]].append(student_name)
 
     # add team info to student info
-    for student_name, student_info  in output.items():
+    for student_name, student_info in output.items():
         # get team info for student
         curr_team_name = student_info["team_name"]
         curr_team_info = team_info_dict[curr_team_name]
@@ -250,15 +259,18 @@ def main(spreadsheet_url, student_info_sheet_name, team_info_sheet_name):
     return create_studio_db_dict(curr_student_info, curr_team_info)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # get command line args
     arg_count = len(sys.argv) - 1
 
     # check for correct number of arguments
     if arg_count != 3:
-        raise Exception("Invalid number of arguments. Expected 3 "
-                        "(Studio Roster URL, Student Info sheet name, Team Info sheet name) got {}."
-                        .format(arg_count))
+        raise Exception(
+            "Invalid number of arguments. Expected 3 "
+            "(Studio Roster URL, Student Info sheet name, Team Info sheet name) got {}.".format(
+                arg_count
+            )
+        )
 
     # parse each argument
     input_spreadsheet_url = sys.argv[1]
@@ -267,8 +279,14 @@ if __name__ == '__main__':
     json_output_filepath = "hci_studio_db.json"
 
     # generate studio database dict
-    studio_database_dict = main(input_spreadsheet_url, input_student_info_sheet_name, input_team_info_sheet_name)
+    studio_database_dict = main(
+        input_spreadsheet_url, input_student_info_sheet_name, input_team_info_sheet_name
+    )
 
     # export as json and print exported json
     export_studio_db_as_json(studio_database_dict, json_output_filepath)
-    print("Studio Roster successfully parsed and exported to {}".format(json_output_filepath))
+    print(
+        "Studio Roster successfully parsed and exported to {}".format(
+            json_output_filepath
+        )
+    )

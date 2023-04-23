@@ -17,16 +17,17 @@ def copy_file_request(service, origin_file_id, file_parent_id, file_name):
     :return: copied file, if successful. none otherwise.
     """
     # setup request body
-    copy_request_body = {
-        'name': file_name,
-        'parents': [file_parent_id]
-    }
+    copy_request_body = {"name": file_name, "parents": [file_parent_id]}
 
     # attempt to copy file
     try:
-        return service.files().copy(fileId=origin_file_id, body=copy_request_body).execute()
+        return (
+            service.files()
+            .copy(fileId=origin_file_id, body=copy_request_body)
+            .execute()
+        )
     except errors.HttpError as error:
-        print('An error occurred: {}'.format(error))
+        print("An error occurred: {}".format(error))
 
     # return none if file copy failed
     return None
@@ -65,14 +66,17 @@ def main(file_url, folder_url, file_name):
     return copy_file(service, file_url, folder_url, file_name)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # get command line args
     arg_count = len(sys.argv) - 1
 
     # check for correct number of arguments
     if arg_count != 3:
-        raise Exception("Invalid number of arguments. Expected 3 (file URL, folder URL, file name) got {}."
-                        .format(arg_count))
+        raise Exception(
+            "Invalid number of arguments. Expected 3 (file URL, folder URL, file name) got {}.".format(
+                arg_count
+            )
+        )
 
     # parse each argument
     input_file_url = sys.argv[1]
