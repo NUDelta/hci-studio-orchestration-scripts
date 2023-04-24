@@ -23,10 +23,10 @@ def fetch_student_info(spreadsheet, sheet_name):
     # create header mapping object
     header = values[0]
     header_mapping = {
-        "Name": "student_name",
+        "Full Name": "student_name",
         "Email": "email_address",
+        "Learning Goals": "learning_goals",
         "Team Name": "team_name",
-        "Mysore Availability": "mysore_availability",
         "Individual Progress Map": "individual_progress_map_link",
         "Self-Assessment": "self_assessment_link",
     }
@@ -56,11 +56,13 @@ def fetch_student_info(spreadsheet, sheet_name):
         # hold the current student's name to use as a dict key later
         curr_student_name = ""
 
-        # setup an object for holding current project information
+        # setup an object for holding current student information
         curr_student = {
+            "name": "",
             "email_address": "",
             "team_name": "",
             "mysore_availability": [],
+            "learning_goals": "",
             "individual_progress_map_link": "",
             "self_assessment_link": "",
         }
@@ -72,7 +74,7 @@ def fetch_student_info(spreadsheet, sheet_name):
                 continue
 
             # if Name, get current student's name
-            if header_index[index] == "Name":
+            if header_index[index] == "Full Name":
                 curr_student_name = student_info
             # if Mysore Availability, parse comma-separated string into a list
             elif header_index[index] == "Mysore Availability":
@@ -109,15 +111,15 @@ def fetch_team_info(spreadsheet, sheet_name):
     header = values[0]
     header_mapping = {
         "Team Name": "team_name",
-        "Week 1 Template": "week_1_template_link",
-        "Week 2 Template": "week_2_template_link",
-        "Week 3 Template": "week_3_template_link",
-        "Week 4 Template": "week_4_template_link",
-        "Week 5 Template": "week_5_template_link",
-        "Week 6 Template": "week_6_template_link",
-        "Week 7 Template": "week_7_template_link",
-        "Week 8 Template": "week_8_template_link",
-        "Week 9 Template": "week_9_template_link",
+        "Week 01 Templates": "week_01_template_link",
+        "Week 02 Templates": "week_02_template_link",
+        "Week 03 Templates": "week_03_template_link",
+        "Week 04 Templates": "week_04_template_link",
+        "Week 05 Templates": "week_05_template_link",
+        "Week 06 Templates": "week_06_template_link",
+        "Week 07 Templates": "week_07_template_link",
+        "Week 08 Templates": "week_08_template_link",
+        "Week 09 Templates": "week_09_template_link",
     }
 
     # create a header index to lookup header_mapping keys by index number
