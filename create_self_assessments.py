@@ -32,7 +32,7 @@ def generate_self_assessment(
     for student_name, student_info in studio_db_dict.items():
         # generate a filename using the student's first name and last initial
         student_name_split = student_name.split(" ")
-        student_filename = "{first} {lasti}. -- HCI Studio Self-Assessment".format(
+        student_filename = "{first} {lasti}. -- HCI Studio EOQ Self-Assessment".format(
             first=student_name_split[0], lasti=student_name_split[-1][0]
         )
 
@@ -96,25 +96,41 @@ def populate_basic_info(worksheet, student_name, student_info_dict):
     """
     # generate update list with student's: name; email; team color (and members); individual progress map link
     student_email = student_info_dict["email_address"]
+    student_learning_goal = student_info_dict["learning_goals"]
     student_team = "{teamname} ({teammembers})".format(
         teamname=student_info_dict["team_info"]["team_name"],
         teammembers="; ".join(student_info_dict["team_info"]["team_members"]),
     )
-    student_design_log = "design log link"
+    student_design_log = "enter design log link (if applicable)"
     student_ipm = student_info_dict["individual_progress_map_link"]
-    student_final_presentation = "final presentation link"
+    team_latest_proj_template = student_info_dict["team_info"]["weekly_templates"][-1][
+        "link"
+    ]
+    team_final_presentation_link = student_info_dict["team_info"][
+        "final_presentation_link"
+    ]
 
     update_list = [
         [student_name],
         [student_email],
+        [
+            student_learning_goal
+            if student_learning_goal != ""
+            else "enter learning goal"
+        ],
         [student_team],
         [student_design_log],
-        [student_ipm if student_ipm != "" else "individual progress map link"],
-        [student_final_presentation],
+        [student_ipm if student_ipm != "" else "enter individual progress map link"],
+        [team_latest_proj_template],
+        [
+            team_final_presentation_link
+            if team_final_presentation_link != ""
+            else "enter final presentation link"
+        ],
     ]
 
     # update worksheet
-    worksheet.update("B2:B7", update_list)
+    worksheet.update("B2:B9", update_list)
 
 
 def populate_sprints(worksheet, student_name, student_info_dict):
@@ -129,7 +145,7 @@ def populate_sprints(worksheet, student_name, student_info_dict):
     # generate update list
     update_list = []
     for i in range(1, 10):
-        curr_template_name = "Week {index} Template".format(index=i)
+        curr_template_name = "Week 0{index} Templates".format(index=i)
 
         # find the correct link for week i
         for curr_template_dict in student_info_dict["team_info"]["weekly_templates"]:

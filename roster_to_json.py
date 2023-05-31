@@ -120,6 +120,7 @@ def fetch_team_info(spreadsheet, sheet_name):
         "Week 07 Templates": "week_07_template_link",
         "Week 08 Templates": "week_08_template_link",
         "Week 09 Templates": "week_09_template_link",
+        "Final Presentation": "final_presentation_link",
     }
 
     # create a header index to lookup header_mapping keys by index number
