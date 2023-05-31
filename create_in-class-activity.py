@@ -23,16 +23,24 @@ def generate_activity(student_list, gdrive_service, template_url, folder_url):
     for student in student_list:
         # generate a filename using the student's first name and last initial
         student_name_split = student.split(" ")
-        student_filename = "[{first} {lasti}.] Steve Jobs iPhone Activity -- Design Argument".format(first=student_name_split[0],
-                                                                                    lasti=student_name_split[-1][0])
+        student_filename = (
+            "[{first} {lasti}.] Steve Jobs iPhone Activity -- Design Argument".format(
+                first=student_name_split[0], lasti=student_name_split[-1][0]
+            )
+        )
 
         # copy original file for each project using student_filename
-        curr_copied_file = copy_file(gdrive_service, template_url, folder_url, student_filename)
+        curr_copied_file = copy_file(
+            gdrive_service, template_url, folder_url, student_filename
+        )
 
         # generate a file URL for copied file, and print out
         curr_file_id = curr_copied_file["id"]
-        print("{filename}: https://docs.google.com/presentation/d/{id}/edit".format(filename=student_filename,
-                                                                                    id=curr_file_id))
+        print(
+            "{filename}: https://docs.google.com/presentation/d/{id}/edit".format(
+                filename=student_filename, id=curr_file_id
+            )
+        )
 
 
 def main(template_file_url, folder_url, student_name_list):
@@ -52,16 +60,17 @@ def main(template_file_url, folder_url, student_name_list):
     generate_activity(student_name_list, gdrive_service, template_file_url, folder_url)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # get command line args
     arg_count = len(sys.argv) - 1
 
     # check for correct number of arguments
     if arg_count != 3:
-        raise Exception("Invalid number of arguments. Expected 3 "
-                        "(activity template URL, activity folder URL, "
-                        "Student List) got {}."
-                        .format(arg_count))
+        raise Exception(
+            "Invalid number of arguments. Expected 3 "
+            "(activity template URL, activity folder URL, "
+            "Student List) got {}.".format(arg_count)
+        )
 
     # inputs for creating activity
     input_template_file_url = sys.argv[1]
